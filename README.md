@@ -32,6 +32,11 @@ In progress — actively being developed as part of a 90-day build system.
 - Connect to a database (Supabase)
 - Deploy as a live application
 
+## Live Demo
+(link here)
+
+## Screenshots
+
 ## Author
 
 Howard Palmer  
