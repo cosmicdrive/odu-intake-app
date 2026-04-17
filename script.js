@@ -1,4 +1,5 @@
 const form = document.getElementById("intakeForm");
+const responseMessage = document.getElementById("responseMessage");
 
 form.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -10,4 +11,8 @@ form.addEventListener("submit", function(event) {
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Message:", message);
+
+    responseMessage.textContent = "Submission received";
+
+    form.reset();
 });
