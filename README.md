@@ -32,10 +32,13 @@ In progress — actively being developed as part of a 90-day build system.
 - Connect to a database (Supabase)
 - Deploy as a live application
 
-## Live Demo
-(link here)
+ ## What I Learned
 
-## Screenshots
+- How to capture user input with JavaScript
+- How to prevent default form behavior
+- How to update the UI dynamically
+- How to add basic validation logic
+
 
 ## Author
 
