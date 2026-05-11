@@ -17,7 +17,7 @@ form.addEventListener("submit", async function(event) {
 
     if (name === "" || email === "" || message === "") {
         responseMessage.style.color = "red";
-        responseMessage.textContent = "Please fill out all fields";
+        responseMessage.textContent = error.message;
         return;
     }
 
