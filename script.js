@@ -1,3 +1,7 @@
+const supabaseUrl = "YOUR_SUPABASE_PROJECT_URL";
+const supabaseKey = "YOUR_SUPABASE_ANON_PUBLIC_KEY";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 const form = document.getElementById("intakeForm");
 const responseMessage = document.getElementById("responseMessage");
 // getting information from the user via the intakeForm. Understanding the submission of the user
