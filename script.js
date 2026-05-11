@@ -34,7 +34,7 @@ form.addEventListener("submit", async function(event) {
     if (error) {
         console.error("Supabase error:", error);
         responseMessage.style.color = "red";
-        responseMessage.textContent = "Something went wrong. Please try again.";
+        responseMessage.textContent = error.message;
         return;
     }
 
