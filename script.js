@@ -9,6 +9,34 @@ const responseMessage = document.getElementById("responseMessage");
 // getting information from the user via the intakeForm. Understanding the submission of the user
 // getting information from the responceMessage in the textbox from the users input.
 
+async function loadSubmissions() {
+
+    const { data, error } = await supabaseClient
+        .from("submissions")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Error loading submissions:", error);
+        return;
+    }
+
+    submissionsList.innerHTML = "";
+
+    data.forEach(submission => {
+
+        const entry = document.createElement("div");
+
+        entry.innerHTML = `
+            <hr>
+            <p><strong>Name:</strong> ${submission.name}</p>
+            <p><strong>Email:</strong> ${submission.email}</p>
+            <p><strong>Message:</strong> ${submission.message}</p>
+        `;
+
+        submissionsList.appendChild(entry);
+    });
+}
 
 form.addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -51,4 +79,6 @@ button.textContent = "Submit";
 
     form.reset();
 });
+
+loadSubmissions();
     // clear all the form inputs after submission.
