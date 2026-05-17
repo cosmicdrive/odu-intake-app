@@ -5,14 +5,11 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 const form = document.getElementById("intakeForm");
-const button = form.querySelector("button");
 const responseMessage = document.getElementById("responseMessage");
 const submissionsList = document.getElementById("submissionsList");
-// getting information from the user via the intakeForm. Understanding the submission of the user
-// getting information from the responceMessage in the textbox from the users input.
+const button = form.querySelector("button");
 
 async function loadSubmissions() {
-
     const { data, error } = await supabaseClient
         .from("submissions")
         .select("*")
@@ -26,7 +23,6 @@ async function loadSubmissions() {
     submissionsList.innerHTML = "";
 
     data.forEach(submission => {
-
         const entry = document.createElement("div");
 
         entry.innerHTML = `
@@ -43,19 +39,18 @@ async function loadSubmissions() {
 form.addEventListener("submit", async function(event) {
     event.preventDefault();
 
-    button.disabled = true;
-button.textContent = "Submitting...";
-    button.disabled = false;
-button.textContent = "Submit";
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
 
     if (name === "" || email === "" || message === "") {
         responseMessage.style.color = "red";
-        responseMessage.textContent = error.message;
+        responseMessage.textContent = "Please fill out all fields";
         return;
     }
+
+    button.disabled = true;
+    button.textContent = "Submitting...";
 
     const { data, error } = await supabaseClient
         .from("submissions")
@@ -71,6 +66,9 @@ button.textContent = "Submit";
         console.error("Supabase error:", error);
         responseMessage.style.color = "red";
         responseMessage.textContent = error.message;
+
+        button.disabled = false;
+        button.textContent = "Submit";
         return;
     }
 
@@ -80,6 +78,15 @@ button.textContent = "Submit";
     responseMessage.textContent = `Thank you, ${name}. Your response has been received.`;
 
     form.reset();
+
+    button.disabled = false;
+    button.textContent = "Submit";
+
+    loadSubmissions();
+
+    setTimeout(() => {
+        responseMessage.textContent = "";
+    }, 3000);
 });
 
 loadSubmissions();
