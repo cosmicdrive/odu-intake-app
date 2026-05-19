@@ -1,11 +1,12 @@
 const supabaseUrl = "https://ojlhgogmefxhwfhrjjmm.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qbGhnb2dtZWZ4aHdmaHJqam1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1ODk3MTUsImV4cCI6MjA5MzE2NTcxNX0.LJd9YrlBZHtNswypNw9ymTOErKMXZnrVH88soa_j8Ao";
+const supabaseKey = "SECRET";
 
 
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 const form = document.getElementById("intakeForm");
 const responseMessage = document.getElementById("responseMessage");
+const submissionCount = document.getElementById("submissionCount");
 const submissionsList = document.getElementById("submissionsList");
 const button = form.querySelector("button");
 
@@ -21,15 +22,19 @@ async function loadSubmissions() {
     }
 
     submissionsList.innerHTML = "";
+    submissionCount.textContent = `Total Submissions: ${data.length}`;
 
     data.forEach(submission => {
         const entry = document.createElement("div");
 
         entry.innerHTML = `
-            <hr>
-            <p><strong>Name:</strong> ${submission.name}</p>
-            <p><strong>Email:</strong> ${submission.email}</p>
-            <p><strong>Message:</strong> ${submission.message}</p>
+            <div class="submission-card">
+                <p><strong>Name:</strong> ${submission.name}</p>
+                <p><strong>Email:</strong> ${submission.email}</p>
+                <p><strong>Message:</strong> ${submission.message}</p>
+                <p><strong>Submitted:</strong> ${new DataTransfer(submission.created_at).toLocalString()}</p>
+            </div>
+        
         `;
 
         submissionsList.appendChild(entry);
