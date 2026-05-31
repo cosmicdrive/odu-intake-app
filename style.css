@@ -53,3 +53,7 @@ button {
     border-radius: 8px;
     border-left: 4px solid black;
 }
+.status-new {
+    color: blue;
+    font-weight: bold;
+}
