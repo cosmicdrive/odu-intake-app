@@ -32,6 +32,7 @@ async function loadSubmissions() {
                 <p><strong>Name:</strong> ${submission.name}</p>
                 <p><strong>Email:</strong> ${submission.email}</p>
                 <p><strong>Message:</strong> ${submission.message}</p>
+                <p><strong>Status:</strong> ${submission.status}</p>
                 <p><strong>Submitted:</strong> ${new DataTransfer(submission.created_at).toLocalString()}</p>
             </div>
         
