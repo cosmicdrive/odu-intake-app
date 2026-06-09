@@ -48,7 +48,18 @@ form.addEventListener("submit", async function(event) {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
+    let priority = "Standard";
 
+        const lowerMessage = message.toLowerCase();
+
+        if (
+            lowerMessage.includes("stress") ||
+            lowerMessage.includes("burnout") ||
+            lowerMessage.includes("anxiety") ||
+            lowerMessage.includes("overwhelmed")
+        ) {
+    priority = "High Priority";
+    }
     if (name === "" || email === "" || message === "") {
         responseMessage.style.color = "red";
         responseMessage.textContent = "Please fill out all fields";
