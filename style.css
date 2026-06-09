@@ -57,3 +57,12 @@ button {
     color: blue;
     font-weight: bold;
 }
+.priority-high {
+    color: red;
+    font-weight: bold;
+}
+
+.priority-standard {
+    color: green;
+    font-weight: bold;
+}
