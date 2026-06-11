@@ -32,11 +32,25 @@ async function loadSubmissions() {
                 <p><strong>Name:</strong> ${submission.name}</p>
                 <p><strong>Email:</strong> ${submission.email}</p>
                 <p><strong>Message:</strong> ${submission.message}</p>
-                <p><strong>Priority:</strong> ${submission.priority}</p>
                 <p><strong>Status:</strong> ${submission.status}</p>
-                <p><strong>Submitted:</strong> ${new DataTransfer(submission.created_at).toLocalString()}</p>
+                <p>
+                    <strong>Priority:</strong>
+                    <span class="${
+                        submission.priority === "High Priority"
+                            ? "priority-high"
+                            : "priority-standard"
+                    }">
+                        ${submission.priority}
+                    </span>
+                </p>
+                <p><strong>Submitted:</strong> ${new Date(submission.created_at).toLocaleString()}</p>
+
+                ${
+                    submission.priority === "High Priority"
+                        ? "<p><strong>⚠ Needs Review</strong></p>"
+                        : ""
+                }
             </div>
-        
         `;
 
         submissionsList.appendChild(entry);
@@ -49,18 +63,19 @@ form.addEventListener("submit", async function(event) {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
+
     let priority = "Standard";
+    const lowerMessage = message.toLowerCase();
 
-        const lowerMessage = message.toLowerCase();
-
-        if (
-            lowerMessage.includes("stress") ||
-            lowerMessage.includes("burnout") ||
-            lowerMessage.includes("anxiety") ||
-            lowerMessage.includes("overwhelmed")
-        ) {
-    priority = "High Priority";
+    if (
+        lowerMessage.includes("stress") ||
+        lowerMessage.includes("burnout") ||
+        lowerMessage.includes("anxiety") ||
+        lowerMessage.includes("overwhelmed")
+    ) {
+        priority = "High Priority";
     }
+
     if (name === "" || email === "" || message === "") {
         responseMessage.style.color = "red";
         responseMessage.textContent = "Please fill out all fields";
@@ -76,7 +91,8 @@ form.addEventListener("submit", async function(event) {
             {
                 name: name,
                 email: email,
-                message: message
+                message: message,
+                priority: priority
             }
         ]);
 
@@ -108,4 +124,3 @@ form.addEventListener("submit", async function(event) {
 });
 
 loadSubmissions();
-    // clear all the form inputs after submission.
