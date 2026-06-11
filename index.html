@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <p>
-    Intake management and workflow tracking system for One Dark Universe.
-</p>
 <head>
     <title>One Dark Universe Intake & Workflow System</title>
     <link rel="stylesheet" href="style.css">
@@ -11,31 +8,47 @@
 
     <h1>One Dark Universe Intake</h1>
 
+    <p>
+        Intake management and workflow tracking system for One Dark Universe.
+    </p>
+
     <form id="intakeForm">
-        <label>Name:</label><br>
-       <input
-    type="text"
-    id="name"
-    placeholder="Enter your name"
->
+        <label for="name">Name:</label><br>
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+        ><br><br>
 
-        <label>Email:</label><br>
-        <input type="email" id="email"><br><br>
+        <label for="email">Email:</label><br>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        ><br><br>
 
-        <label>What brings you here?</label><br>
-        <textarea id="message"></textarea><br><br>
+        <label for="message">What brings you here?</label><br>
+        <textarea
+            id="message"
+            placeholder="Tell us what brings you here"
+            required
+        ></textarea><br><br>
 
         <button type="submit">Submit</button>
     </form>
 
     <p id="responseMessage"></p>
+
+    <section>
+        <h2>Submitted Entries</h2>
+        <p id="submissionCount"></p>
+        <div id="submissionsList"></div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
-<section>
-    <h2>Submitted Entries</h2>
-    <p id="submissionCount"></p>
-    <div id="submissionsList"></div>
-</section>
 
 </body>
 </html>
