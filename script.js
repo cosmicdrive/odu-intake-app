@@ -68,10 +68,13 @@ form.addEventListener("submit", async function(event) {
     const lowerMessage = message.toLowerCase();
 
     if (
-        lowerMessage.includes("stress") ||
-        lowerMessage.includes("burnout") ||
-        lowerMessage.includes("anxiety") ||
-        lowerMessage.includes("overwhelmed")
+    lowerMessage.includes("stress") ||
+    lowerMessage.includes("burnout") ||
+    lowerMessage.includes("anxiety") ||
+    lowerMessage.includes("overwhelmed") ||
+    lowerMessage.includes("panic") ||
+    lowerMessage.includes("depressed") ||
+    lowerMessage.includes("struggling")
     ) {
         priority = "High Priority";
     }
